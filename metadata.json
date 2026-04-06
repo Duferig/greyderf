@@ -1,0 +1,5 @@
+{
+  "name": "NovelTranslator AI 2(work version)",
+  "description": "A specialized tool for translating novels using Gemini 3, featuring automated glossary extraction, context retention for large files, and style customization.",
+  "requestFramePermissions": []
+}

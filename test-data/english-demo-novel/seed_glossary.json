@@ -1,0 +1,47 @@
+[
+  {
+    "term": "Kael Varyn",
+    "translation": "Каэль Варин",
+    "status": "approved",
+    "source": "manual",
+    "category": "person",
+    "chapterId": null,
+    "updatedAt": "2026-04-06T00:00:00.000Z"
+  },
+  {
+    "term": "Mira Sol",
+    "translation": "Мира Сол",
+    "status": "approved",
+    "source": "manual",
+    "category": "person",
+    "chapterId": null,
+    "updatedAt": "2026-04-06T00:00:00.000Z"
+  },
+  {
+    "term": "Black Reed Sect",
+    "translation": "Секта Черного Тростника",
+    "status": "approved",
+    "source": "manual",
+    "category": "organization",
+    "chapterId": null,
+    "updatedAt": "2026-04-06T00:00:00.000Z"
+  },
+  {
+    "term": "Azure Flame Breathing",
+    "translation": "Дыхание Лазурного Пламени",
+    "status": "approved",
+    "source": "manual",
+    "category": "technique",
+    "chapterId": null,
+    "updatedAt": "2026-04-06T00:00:00.000Z"
+  },
+  {
+    "term": "Ashen Pearl",
+    "translation": "Пепельная Жемчужина",
+    "status": "approved",
+    "source": "manual",
+    "category": "item",
+    "chapterId": null,
+    "updatedAt": "2026-04-06T00:00:00.000Z"
+  }
+]
