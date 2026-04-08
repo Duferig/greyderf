@@ -70,6 +70,7 @@ CRITICAL RULES:
 };
 
 const DEFAULT_PROFILE: LanguageProfile = 'korean';
+const MIN_TRANSLATED_CHAPTER_SIZE_BYTES = 11 * 1024;
 
 const createEmptyProjectState = (
   languageProfile: LanguageProfile = DEFAULT_PROFILE,
@@ -759,9 +760,43 @@ function App() {
         }
 
         const finalGlossary = mergeApprovedGlossary(currentGlossary, postAutoGlossaryItems);
+        const finalTextSizeBytes = new TextEncoder().encode(finalText).length;
 
         setProgress(96);
         await writeTextFileToDirectory(outputDirectoryHandle, chapter.outputFileName, finalText);
+
+        if (finalTextSizeBytes < MIN_TRANSLATED_CHAPTER_SIZE_BYTES) {
+          applyProjectUpdate((current) => {
+            const mergedGlossary = mergeApprovedGlossary(
+              current.approvedGlossary,
+              postAutoGlossaryItems
+            );
+
+            return {
+              ...current,
+              approvedGlossary: mergedGlossary,
+              reviewQueue: [],
+              chapterJobs: current.chapterJobs.map((job) =>
+                job.id === chapterId
+                  ? {
+                      ...job,
+                      sourceText,
+                      translatedText: finalText,
+                      status: 'error',
+                      error: `Marked for retry: translated file is smaller than 11 KB (${finalTextSizeBytes} bytes).`,
+                      completedAt: null,
+                      consistencyNotes: controlNotes,
+                    }
+                  : job
+              ),
+            };
+          });
+          setProgress(100);
+          setStatusMessage(
+            `${chapter.fileName} was marked for retry because the translated TXT is smaller than 11 KB.`
+          );
+          return;
+        }
 
         applyProjectUpdate((current) => {
           const mergedGlossary = mergeApprovedGlossary(

@@ -51,7 +51,7 @@ const ALLOWED_AUTO_CATEGORIES: TermCategory[] = [
 
 export const DEFAULT_MODEL_CONFIG = {
   translationModel: 'gemma-4-31b-it',
-  analysisModel: 'gemma-4-31b-it',
+  analysisModel: 'gemma-4-26b-a4b-it',
 };
 
 export const extractFirstNumber = (fileName: string): number | null => {
